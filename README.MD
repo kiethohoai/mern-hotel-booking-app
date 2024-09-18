@@ -6,3 +6,8 @@
 3. MongoDB Setup
 4. Adding Layout
 5. Create Uesr Model & User Routes
+6. User Register
++ npm i bcryptjs jsonwebtoken
++ npm i @types/bcryptjs --save-dev
++ npm i @types/jsonwebtoken --save-dev
++ npm i express-validator
