@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -18,6 +19,15 @@ const App = () => {
           element={
             <Layout>
               <p>SearchPage</p>
+            </Layout>
+          }
+        ></Route>
+
+        <Route
+          path="/register"
+          element={
+            <Layout>
+              <Register />
             </Layout>
           }
         ></Route>

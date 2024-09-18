@@ -12,3 +12,4 @@
 + npm i @types/jsonwebtoken --save-dev
 + npm i express-validator
 7. User Login API
+8. Register Form UI Validation
