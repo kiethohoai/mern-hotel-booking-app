@@ -9,10 +9,19 @@ type RegisterFormData = {
 };
 
 const Register = () => {
-  const { register, watch } = useForm<RegisterFormData>();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>();
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
 
   return (
-    <form className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <h2 className="text-3xl font-bold">Register</h2>
 
       {/* First Name */}
@@ -24,6 +33,7 @@ const Register = () => {
             className="border rounded w-full py-1 px-2 font-normal"
             {...register('firstName', { required: 'This field is required' })}
           />
+          {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
         </label>
 
         {/* Last Name */}
@@ -34,6 +44,7 @@ const Register = () => {
             className="border rounded w-full py-1 px-2 font-normal"
             {...register('lastName', { required: 'This field is required' })}
           />
+          {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
         </label>
       </div>
 
@@ -43,15 +54,23 @@ const Register = () => {
         <input
           type="text"
           className="border rounded w-full py-1 px-2 font-normal"
-          {...register('email', { required: 'This field is required' })}
+          {...register('email', {
+            required: 'This field is required',
+            validate: (value) => {
+              if (!value.includes('@')) {
+                return 'Please enter a valid email address';
+              }
+            },
+          })}
         />
+        {errors.email && <span className="text-red-500">{errors.email.message}</span>}
       </label>
 
       {/* Password */}
       <label className="text-gray-700 text-sm font-bold flex-1">
         Password
         <input
-          type="text"
+          type="password"
           className="border rounded w-full py-1 px-2 font-normal"
           {...register('password', {
             required: 'This field is required',
@@ -61,13 +80,14 @@ const Register = () => {
             },
           })}
         />
+        {errors.password && <span className="text-red-500">{errors.password.message}</span>}
       </label>
 
       {/* Confirm Password */}
       <label className="text-gray-700 text-sm font-bold flex-1">
         Confirm Password
         <input
-          type="text"
+          type="password"
           className="border rounded w-full py-1 px-2 font-normal"
           {...register('confirmPassword', {
             validate: (value) => {
@@ -79,13 +99,11 @@ const Register = () => {
             },
           })}
         />
+        {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
       </label>
 
       <span>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white p-3 font-bold rounded-sm text-xl"
-        >
+        <button type="submit" className="bg-blue-600 text-white p-3 font-bold rounded-sm text-xl">
           Create Account
         </button>
       </span>
