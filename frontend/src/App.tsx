@@ -5,8 +5,22 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
-        <Route path="/search" element={<>Search Page</>}></Route>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <p>HomePage</p>
+            </Layout>
+          }
+        ></Route>
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <p>SearchPage</p>
+            </Layout>
+          }
+        ></Route>
         <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
       </Routes>
     </Router>
