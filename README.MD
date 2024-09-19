@@ -16,3 +16,4 @@
 9. Handle Submit & Errors Form Validation
 10. Services -> API Client
 11. Register User API through FE & BE
+12. AppContext & AppContextProvider
