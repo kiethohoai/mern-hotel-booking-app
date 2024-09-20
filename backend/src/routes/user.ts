@@ -1,19 +1,19 @@
-import express, { Request, Response } from "express";
-import User from "../models/user";
-import jwt from "jsonwebtoken";
-import { check, validationResult } from "express-validator";
+import express, { Request, Response } from 'express';
+import User from '../models/user';
+import jwt from 'jsonwebtoken';
+import { check, validationResult } from 'express-validator';
 
 const router = express.Router();
 
 // todo Register
 router.post(
-  "/register",
+  '/register',
   [
     // Validate data
-    check("firstName", "First name is required").not().isEmpty(),
-    check("lastName", "Last name is required").not().isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
-    check("password", "Password must be at least 6 characters").isLength({ min: 6 }),
+    check('firstName', 'First name is required').not().isEmpty(),
+    check('lastName', 'Last name is required').not().isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password must be at least 6 characters').isLength({ min: 6 }),
   ],
   async (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -34,7 +34,7 @@ router.post(
       if (user) {
         return res.status(400).json({
           status: false,
-          message: "User already exists",
+          message: 'User already exists',
         });
       }
 
@@ -55,27 +55,25 @@ router.post(
       });
 
       // Set cookie
-      res.cookie("auth_token", token, {
+      res.cookie('auth_token', token, {
         httpOnly: true,
-        sameSite: "none",
-        // true in production, false in development
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 30,
       });
 
       // Send response
       return res.status(200).json({
         status: true,
-        message: "User registered successfully",
+        message: 'User registered successfully',
       });
     } catch (error) {
-      console.log("🚀Error on /register route:", error);
+      console.log('🚀Error on /register route:', error);
 
       res.status(500).json({
-        message: "Something went wrong",
+        message: 'Something went wrong',
       });
     }
-  }
+  },
 );
 
 export default router;
