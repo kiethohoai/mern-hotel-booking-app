@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Layout from "./layout/Layout";
-import Register from "./pages/Register";
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Layout from './layout/Layout';
+import Register from './pages/Register';
+import SignIn from './pages/SignIn';
 
 const App = () => {
   return (
@@ -31,6 +32,16 @@ const App = () => {
             </Layout>
           }
         ></Route>
+
+        <Route
+          path="/sign-in"
+          element={
+            <Layout>
+              <SignIn />
+            </Layout>
+          }
+        ></Route>
+
         <Route path="*" element={<Navigate to="/"></Navigate>}></Route>
       </Routes>
     </Router>
