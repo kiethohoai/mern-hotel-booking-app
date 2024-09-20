@@ -39,6 +39,18 @@ export const signIn = async (formData: SignInFormData) => {
   return body;
 };
 
+// TODO logout
+export const logout = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Error during logging out');
+  }
+};
+
 // TODO validateToken
 export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {

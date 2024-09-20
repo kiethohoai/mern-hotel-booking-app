@@ -20,3 +20,4 @@
 13. AppContext & Toast Notifications
 14. Checking User Login State
 15. Sign in
+16. Sign out
